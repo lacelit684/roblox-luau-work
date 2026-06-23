@@ -1,19 +1,22 @@
 --[[
 
-	BlackbodyPhysicsLibrary.lua
+	BlackbodyPhysicsLibrary.luau
 	
 	Contributors:
 	* Irene "lacelit684" - Lead Developer since 2026-06-21
 	
 	Created: 2025-06-25
-	Last Modified: 2026-06-22
+	Last Modified: 2026-06-23
 	
-	Version: 2.1.0
+	Version: 3.0.0
 	
 	License: MPL-2.0
 	
 	Description:
 	Module for numerical calculation of approximate thermal radiation at a given temperature.
+
+	Dependencies:
+	MathsLibrary.luau
 	
 	Citations:
 	[1] Wyman, C., Sloan, P.-P. and Shirley, P. (2013). Simple Analytic Approximations to the CIE XYZ Color Matching Functions. Journal of Computer Graphics Techniques, [online] 2(2), p.5. Available at: https://jcgt.org/published/0002/02/01/paper.pdf [Accessed 26 Jun. 2025].
@@ -33,7 +36,7 @@
 
 local module = {}
 
-module.Citations = { -- TODO: Maybe I should make a universal citation module?
+module.Citations = {
 	[1] = "Wyman, C., Sloan, P.-P. and Shirley, P. (2013). Simple Analytic Approximations to the CIE XYZ Color Matching Functions. Journal of Computer Graphics Techniques, [online] 2(2), p.5. Available at: https://jcgt.org/published/0002/02/01/paper.pdf [Accessed 26 Jun. 2025]."
 }
 
@@ -56,6 +59,10 @@ function module.GetCitations(index: number?)
 
 end
 
+local MathsLibraryPointer: Instance? = script:FindFirstChild("MathsLibraryPointer")
+if not (MathsLibraryPointer and MathsLibraryPointer:IsA("ObjectValue")) then error("Requires MathsLibrary.luau!") end
+local MathsLibrary = require(MathsLibraryPointer.Value)
+
 
 
 -- Constants
@@ -72,46 +79,6 @@ const BOLTZMANN_CONSTANT = 1.3806E-23 -- Boltzmann's constant | J K^-1
 
 
 -- Functions
-
-
--- Calculates the quotient a dividend and a divisor without throwing an error upon division by invalid divisor.
--- ---
--- Inputs:
--- * dividend (number): The number to divide.
--- * divisor (number): The number to divide by.
--- ... [SHOULD] Not be 0 or nil.
--- ---
--- Returns:
--- * [1] (number): The result of the division, or 0 if the divisor is 0 or nil.
-function module.SafeDivide(dividend: number, divisor: number)
-
-	if divisor == 0 or divisor == nil then
-		return 0
-	else
-		return dividend / divisor
-	end
-
-end
-
--- Calculates the sum of all unpacked arguments.
--- ---
--- Inputs:
--- * ... ({number}): The arguments to sum.
--- ... [MAY] Be a tuple.
--- ---
--- Returns:
--- * [1] (number): The sum of the unpacked arguments.
-function module.Sum(...: number)
-
-	local sum = 0
-
-	for _, number in pairs({...}) do
-		sum += number
-	end
-
-	return sum
-
-end
 
 
 -- Calculates the spectral radiance of a blackbody at a given wavelength and temperature.
@@ -141,7 +108,7 @@ function module.SpectralRadiance(wavelength: number, temperature: number)
 		- 1
 	)
 
-	return module.SafeDivide(numerator, denominator)
+	return MathsLibrary.SafeDivide(numerator, denominator)
 
 end
 

@@ -1,6 +1,6 @@
 --[[
 
-	ExemplaryLibraryTemplate.lua
+	ExemplaryLibraryTemplate.luau
 	Name your library whatever and use the correct file format.
 	
 	Contributors:
@@ -24,6 +24,9 @@
 	
 	Citations:
 	[1] Use Harvard citations to cite your sources for whatever magic data.
+
+	Dependencies:
+	They go here.
 	
 	You can also write extra things in this section, like a changelog, acknowledgements or a memorial.
 	I used this to pay my respects to the fathers of the field of physics in my previous libraries.
@@ -39,6 +42,8 @@
 
 
 -- Preamble
+
+-- This is where module imports, citations and declarations go.
 
 local module = {}
 
@@ -69,6 +74,8 @@ end
 
 -- Constants
 
+-- This is where constants go. Duh.
+
 -- If you have constants, write down down like so.
 -- If people will argue over what the value could be, write the actual value somewhere in the description.
 
@@ -88,6 +95,8 @@ const IRENE_HAS_GIRLFRIEND = false -- Whether Irene has a girlfriend (false) (th
 
 
 -- Functions
+
+-- This is where functions go,
 
 -- Calculates the distance travelled by a particle at constant velocity.
 -- ---
@@ -164,6 +173,8 @@ end
 
 
 -- Procedures
+
+-- This is where functions designed to do something outside of computing and returning a value go.
 
 -- Prints something nice.
 -- ---

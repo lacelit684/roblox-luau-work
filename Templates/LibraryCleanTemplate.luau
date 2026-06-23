@@ -1,6 +1,6 @@
 --[[
 
-	LibraryCleanTemplate.lua
+	LibraryCleanTemplate.luau
 	
 	Authors:
 	* YOUR NAME - YOUR ROLE since YYYY-MM-DD
