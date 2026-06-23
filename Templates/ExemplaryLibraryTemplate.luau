@@ -136,7 +136,14 @@ end
 -- ---
 -- Returns:
 -- * [1] (number): The result of the integration.
-function module.NumericallyIntegrateCrap(functionToIntegrate: (number) -> number, domainMin: number, domainMax: number, stepSize: number?)
+function module.NumericallyIntegrateCrap(
+	functionToIntegrate: (number) -> number,
+	
+	domainMin: number,
+	domainMax: number,
+	
+	stepSize: number?
+)
 
 	local step = stepSize or 1e-3
 	assert(step ~= 0, "Step size must not be zero")

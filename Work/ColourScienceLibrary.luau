@@ -58,9 +58,64 @@ end
 
 -- Constants
 
-
+module.VISIBLE_MIN = 380 -- Start of visible spectrum (380 nm) | nm
+module.VISIBLE_MAX = 780 -- End of visible spectrum (780 nm) | nm
 
 -- Functions
+
+-- Calculates the potentially partial integration of a function over a domain of real values.
+-- ---
+-- Inputs:
+-- * integrandFunction (function): The function to integrate.
+-- ... [MUST] Take a number as the first argument and return one number.
+-- ... The variable will be forwarded into the first argument to integrate the function.
+-- ... [MAY] Take additional constant arguments.
+-- ... Extra positional arguments will be forwarded to these in order.
+-- * minimumValue (number) (optional): The minimum value to integrate from. | nm
+-- ... [MUST] Be greater than 0 if present.
+-- ... [MAY] Be omitted to default to the start of the visible spectrum in nanometres (380).
+-- * maximumValue (number) (optional): The maximum wavelength to integrate to. | nm
+-- ... [MUST] Be greater than 0 if present.
+-- ... [MAY] Be omitted to default to the end of the visible spectrum in nanometres (780).
+-- * gammaStep (number) (optional): The step size to use for the numerical integration. | nm
+-- ... [MUST] Be greater than 0 if present.
+-- ... [MAY] Be omitted to default to 1.
+-- ... [MAY] Be adjusted to control the balance between computational load and accuracy.
+-- * ... (any?) (optional): Additional constant arguments to forward to the spectrum function.
+-- ---
+-- Returns:
+-- * [1] (number): The relative large cone tristimulus value for the given temperature.
+-- * [2] (number): The relative medium cone tristimulus value for the given temperature.
+-- * [3] (number): The relative small cone tristimulus value for the given temperature.
+function module.PartialIntegration(
+	integrandFunction: (number, ...any?) -> number,
+	
+	minimumWavelength: number?,
+	maximumWavelength: number?,
+
+	gammaStep: number?,
+	
+	...: any?
+)
+
+	local step: number = gammaStep or 1
+	local minimum: number = minimumWavelength or module.VISIBLE_MIN
+	local maximum: number = maximumWavelength or module.VISIBLE_MAX
+
+	local integral = 0
+
+	local extraArgs = table.pack(...)
+
+	for wavelength = minimum, maximum, step do
+
+		integral += integrandFunction(wavelength, table.unpack(extraArgs))
+
+	end
+
+	return integral
+
+end
+
 
 -- Calculates the relative large cone stimulus value for a given wavelength of light. [1]
 -- ---
@@ -127,6 +182,28 @@ function module.ZStimulus(wavelength: number)
 
 end
 
+-- Calculates the relative tristimulus values for a given wavelength of light. [1]
+-- ---
+-- Inputs:
+-- * wavelength (number): The wavelength to calculate for. | nm
+-- ... [MUST] Be greater than 0.
+-- ---
+-- Returns:
+-- * [1] (number): The relative large cone stimulus value for the given wavelength of light.
+-- * [2] (number): The relative medium cone stimulus value for the given wavelength of light.
+-- * [3] (number): The relative small cone stimulus value for the given wavelength of light.
+function module.Tristimulus(wavelength: number)
+
+	assert(wavelength > 0, "Wavelength must be greater than 0")
+
+	return
+		module.XStimulus(wavelength),
+		module.YStimulus(wavelength),
+		module.ZStimulus(wavelength)
+
+end
+
+
 -- Calculates the linear RGB values of a colour from its CIE XYZ tristimulus values. [1]
 -- ---
 -- Inputs:
@@ -157,7 +234,7 @@ end
 -- Inputs:
 -- * value (number): The linear RGB value to correct.
 -- ... [SHOULD] Be in the range [0, 1].
--- * accurate (boolean) (optional): If true, uses a more accurate, though marginally slower gamma correction.
+-- * accurate (boolean) (optional): If true, uses a more accurate though marginally slower gamma correction.
 -- ... [MAY] Be omitted to default to false.
 -- ---
 -- Returns:
@@ -188,14 +265,20 @@ end
 -- ... [SHOULD] Be in the range [0, 1].
 -- * blue (number): The blue linear RGB value.
 -- ... [SHOULD] Be in the range [0, 1].
--- * accurate (boolean) (optional): If true, uses a more accurate, though marginally slower gamma correction.
+-- * accurate (boolean) (optional): If true, uses a more accurate though marginally slower gamma correction.
 -- ... [MAY] Be omitted to default to false.
 -- ---
 -- Returns:
 -- * [1] (number): The gamma-corrected sRGB red value.
 -- * [2] (number): The gamma-corrected sRGB green value.
 -- * [3] (number): The gamma-corrected sRGB blue value.
-function module.LRGBToDisplay(red: number, green: number, blue: number, accurate: boolean?)
+function module.LRGBToDisplay(
+	red: number,
+	green: number,
+	blue: number,
+	
+	accurate: boolean?
+)
 
 	return
 		math.clamp(module.GammaCorrection( red, accurate ), 0, 1),

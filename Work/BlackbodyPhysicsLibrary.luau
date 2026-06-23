@@ -234,51 +234,6 @@ function module.Tristimulus(wavelength: number)
 end
 
 
--- Calculates the tristimulus values of a blackbody at a given temperature by numerically integrating the product of the spectral radiance and the cone stimulus functions over a given wavelength range.
--- ---
--- Inputs:
--- * temperature (number): The temperature to calculate for. | K
--- ... [MUST] Be greater than 0.
--- * minimumWavelength (number) (optional): The minimum wavelength to integrate over. | nm
--- ... [MUST] Be greater than 0 if present.
--- ... [MAY] Be omitted to default to the start of the visible spectrum (380 nm).
--- * maximumWavelength (number) (optional): The maximum wavelength to integrate over. | nm
--- ... [MUST] Be greater than 0 if present.
--- ... [MAY] Be omitted to default to the end of the visible spectrum (780 nm).
--- * gammaStep (number) (optional): The step size to use for the numerical integration. | nm
--- ... [MUST] Be greater than 0 if present.
--- ... [MAY] Be omitted to default to 1 nm.
--- ... [MAY] Be adjusted to control the balance between computational load and accuracy.
--- ---
--- Returns:
--- * [1] (number): The relative large cone tristimulus value for the given temperature.
--- * [2] (number): The relative medium cone tristimulus value for the given temperature.
--- * [3] (number): The relative small cone tristimulus value for the given temperature.
-function module.BlackbodyToXYZ(temperature: number, minimumWavelength: number?, maximumWavelength: number?, gammaStep: number?)
-
-	local step: number = gammaStep or 1
-	local minimum: number = minimumWavelength or module.VISIBLE_MIN
-	local maximum: number = maximumWavelength or module.VISIBLE_MAX
-
-	local x, y, z = 0, 0, 0
-
-	for wavelength = minimum, maximum, step do
-
-		local wavelengthMeters = wavelength * NM_TO_M
-
-		local irradiance = module.SpectralRadiance(wavelengthMeters, temperature)
-
-		x += step * irradiance * module.XStimulus(wavelength)
-		y += step * irradiance * module.YStimulus(wavelength)
-		z += step * irradiance * module.ZStimulus(wavelength)
-
-	end
-
-	return x, y, z
-
-end -- TODO: Put this XYZ bullshit in ColourScienceLibrary.luau.
-
-
 -- Calculates the power emitted by a blackbody at a given temperature, angle, and area by numerically integrating the product of the spectral radiance and the solid angle subtended by the area over a given wavelength range.
 -- ---
 -- Inputs:
@@ -303,7 +258,16 @@ end -- TODO: Put this XYZ bullshit in ColourScienceLibrary.luau.
 -- ---
 -- Returns:
 -- * [1] (number): The power emitted by the blackbody at the given temperature, angle, and area. | J s^-1
-function module.BlackbodyPower(temperature: number, angle: number?, area: number?, minimumWavelength: number?, maximumWavelength: number?, gammaStep: number?)
+function module.BlackbodyPower(
+	temperature: number,
+	angle: number?,
+	area: number?,
+	
+	minimumWavelength: number?,
+	maximumWavelength: number?,
+	
+	gammaStep: number?
+)
 	
 	local step: number = gammaStep or 1
 	local minimum: number = minimumWavelength or module.VISIBLE_MIN
