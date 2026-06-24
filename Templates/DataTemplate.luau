@@ -25,7 +25,7 @@
 
 -- Preamble
 
-local Library = {}
+local Block = {}
 
 
 
@@ -35,4 +35,4 @@ local Library = {}
 
 -- Termination
 
-return Library
+return Block
