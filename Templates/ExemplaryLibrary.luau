@@ -17,7 +17,7 @@
 	Increment the second one when you add backwards compatible functionality.
 	Increment the third one when you fix bugs.
 	
-	License: MPL-2.0
+	Licence: MPL-2.0
 	
 	Description:
 	Describe the library here.
@@ -69,6 +69,8 @@ function ExemplaryLibrary:GetCitations(index: number?)
 	end
 
 end
+
+
 
 -- Types
 

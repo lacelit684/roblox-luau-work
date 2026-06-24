@@ -11,7 +11,7 @@
 	
 	Version: 1.2.3
 	
-	License: LICENSE
+	Licence: LICENCE
 	
 	Description:
 	REPLACE
@@ -52,6 +52,10 @@ function Library:GetCitations(index: number?)
 	end
 
 end
+
+
+
+-- Types
 
 
 

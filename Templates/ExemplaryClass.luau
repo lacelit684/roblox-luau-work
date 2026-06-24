@@ -17,7 +17,7 @@
 	Increment the second one when you add backwards compatible functionality.
 	Increment the third one when you fix bugs.
 	
-	License: MPL-2.0
+	Licence: MPL-2.0
 	
 	Description:
 	Describe the class here.
@@ -151,7 +151,7 @@ function Class:MakeASoundCharlie()
 	end
 
 	if chicken == "🍗" then
-		print("I bore witness to the vicious yet calculated slaughter of my brethren. Eventually, the giants had me, and I had nowhere to run as they ended me as easily as they birthed me in their gray and white monument against the heavens. My plumes ripped, my flesh coated and scalded with boiling oil for an eternity, torn apart and dissolved in an eldritch chemical. Is this hell?")
+		print("I bore witness to the vicious yet calculated slaughter of my brethren. Eventually, the giants had me, and I had nowhere to run as they tore my throat open as easily as they birthed me in their gray and white monument against the heavens. My plumes ripped off - my flesh coated and scalded with boiling oil for an eternity - crushed, wrecked, torn apart and corroded in an eldritch oleum - is this hell?")
 	end
 
 	if not chicken then

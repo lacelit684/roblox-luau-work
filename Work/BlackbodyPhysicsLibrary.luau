@@ -11,7 +11,7 @@
 	
 	Version: 3.0.1
 	
-	License: MPL-2.0
+	Licence: MPL-2.0
 	
 	Description:
 	Module for numerical calculation of approximate thermal radiation at a given temperature.
