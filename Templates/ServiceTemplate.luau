@@ -1,7 +1,7 @@
 --[[
 
 	ServiceTemplate.luau
-	Utility Library
+	Service
 	
 	Contributors:
 	* YOUR NAME - YOUR ROLE since YYYY-MM-DD
@@ -26,17 +26,6 @@
 -- Preamble
 
 local Service = {}
-Service.__index = Service
-
-
-
--- Types
-
-type ClassData = {
-
-}
-
-export type Service = typeof(setmetatable({} :: ClassData, Service))
 
 
 
@@ -57,6 +46,10 @@ export type Service = typeof(setmetatable({} :: ClassData, Service))
 
 
 -- Procedures
+
+
+
+-- Lifecycle
 
 
 

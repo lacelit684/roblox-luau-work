@@ -25,7 +25,7 @@
 
 -- Preamble
 
-local Class = {}
+local Class = {} -- REPLACE
 Class.__index = Class
 
 

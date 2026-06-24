@@ -35,8 +35,8 @@
 
 -- Preamble
 
-local Class = {}
-Class.__index = Class
+local ExemplaryClass = {} -- Name your class after the file name.
+ExemplaryClass.__index = ExemplaryClass
 
 
 
@@ -51,7 +51,7 @@ type ClassData = {
 	Charlie: Chicken?
 }
 
-export type Class = typeof(setmetatable({} :: ClassData, Class))
+export type Class = typeof(setmetatable({} :: ClassData, ExemplaryClass))
 
 
 
@@ -65,7 +65,7 @@ export type Class = typeof(setmetatable({} :: ClassData, Class))
 
 -- Constructors
 
--- Generates a new instance of Class.
+-- Generates a new instance of ExemplaryClass.
 -- ---
 -- Inputs:
 -- * alpha (number): The value of this instance's Alpha.
@@ -73,15 +73,15 @@ export type Class = typeof(setmetatable({} :: ClassData, Class))
 -- * charlie (Chicken): The value of this instance's Charlie.
 -- ... What? Excuse me?
 -- Returns:
--- * [1]: The initialised instance of Class.
-function Class.new(alpha: number, bravo: string, charlie: Chicken?)
+-- * [1]: The initialised instance of ExemplaryClass.
+function ExemplaryClass.new(alpha: number, bravo: string, charlie: Chicken?)
 
 	local self = {}
 	self.Alpha = alpha
 	self.Bravo = bravo
 	self.Charlie = charlie
 
-	return setmetatable(self, Class)
+	return setmetatable(self, ExemplaryClass)
 
 end
 
@@ -90,13 +90,13 @@ end
 -- Functions
 
 
--- Returns the repetition of this Class's Alpha by this Class's Bravo multiplied by a factor.
+-- Returns the repetition of this ExemplaryClass's Alpha by this ExemplaryClass's Bravo multiplied by a factor.
 -- ---
 -- Inputs:
 -- * factor (number): The value with which to multiply the amount of repetitions by.
 -- Returns:
--- * [1]: The class's Alpha string repeated.
-function Class:Generate(factor: number)
+-- * [1]: The ExemplaryClass's Alpha string repeated.
+function ExemplaryClass:Generate(factor: number)
 
 	local count = self.Alpha * factor
 
@@ -111,14 +111,14 @@ end
 
 -- Procedures
 
--- Prints the string associated with this Class's Charlie.
+-- Prints the string associated with this ExemplaryClass's Charlie.
 -- ---
 -- Inputs:
 -- * (none)
 -- ---
 -- Returns:
 -- * (none)
-function Class:MakeASoundCharlie()
+function ExemplaryClass:MakeASoundCharlie()
 
 	local chicken = self.Charlie
 
@@ -133,12 +133,11 @@ function Class:MakeASoundCharlie()
 	end
 
 	if chicken == "🍗" then
-		print("I bore witness to the vicious yet calculated slaughter of my brethren. Eventually, the giants had me, and I had nowhere to run as they tore my throat open as easily as they birthed me in their gray and white monument against the heavens. My plumes ripped off - my flesh coated and scalded with boiling oil for an eternity - crushed, wrecked, torn apart and corroded in an eldritch oleum - is this hell?")
+		print("I bore witness to the vicious yet calculated slaughter of my brethren. Eventually, the giants took an iron grip on me, and I had nowhere to run as they tore my throat open as easily as they birthed me in their gray and white monolith, a monument against the heavens. My plumes ripped off - my flesh coated and scalded with boiling oil for an eternity - crushed, wrecked, torn apart and corroded in an eldritch oleum - is this hell?")
+		return
 	end
 
-	if not chicken then
-		print("...")
-	end
+	print("...")
 
 end
 
@@ -146,4 +145,4 @@ end
 
 -- Termination
 
-return Class
+return ExemplaryClass
