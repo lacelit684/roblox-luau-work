@@ -1,18 +1,18 @@
 --[[
 
 	Path/To/ExemplaryLibrary.luau
-	Utility Library
-	Name your library whatever and use the correct file format.
+	Library
+	Name your library whatever.
 	
 	Contributors:
 	* Irene "lacelit684" - Lead Developer since 2026-06-21
 	State role, add and remove as needed.
 	
 	Created: 2026-06-21
-	Last Modified: 2026-06-24
+	Last Modified: 2026-06-27
 	Keep these up to date or your records will suffer your incompetence.
 	
-	Version: 0.0.1
+	Version: 0.0.2
 	Increment the first one when you make a backwards incompatible change to the module.
 	Increment the second one when you add backwards compatible functionality.
 	Increment the third one when you fix bugs.
@@ -45,7 +45,7 @@
 
 -- This is where module imports, citations and declarations go.
 
-local ExemplaryLibrary = {} -- Feel free to rename the returned module.
+local ExemplaryLibrary = {} -- Name your library after the file name.
 
 ExemplaryLibrary.Citations = { -- TODO: Maybe I should make a universal citation module?
 	[1] = "Use Harvard citations to cite your sources for whatever magic data."
@@ -59,8 +59,8 @@ ExemplaryLibrary.Citations = { -- TODO: Maybe I should make a universal citation
 -- ... [MUST] be 1 or greater.
 -- ---
 -- Returns:
--- * [1] (string | table): The citation at the given index if index is present, or a table of all citations if index is absent.
-function ExemplaryLibrary:GetCitations(index: number?)
+-- * [1] (string | {string}): The citation at the given index if index is present, or a table of all citations if index is absent.
+function ExemplaryLibrary:GetCitations(index: number?): (string | {string})
 
 	if index then
 		return ExemplaryLibrary.Citations[index]
@@ -82,7 +82,7 @@ type AlphaBravo = ("A" | "B")
 
 -- Constants
 
--- This is where constants go. Duh.
+-- This is where constant values go.
 
 -- If you have constants, write down down like so.
 -- If people will argue over what the value could be, write the actual value somewhere in the description.
@@ -106,13 +106,15 @@ const alpha: AlphaBravo = "A" -- A for Alpha
 
 -- Variables
 
+-- This is where shared mutable state goes.
+
 local bravo: AlphaBravo = "B" -- B for Bravo
 
 
 
 -- Functions
 
--- This is where functions that just calculate and return something go.
+-- This is where functions that calculate and return a value go.
 
 -- Calculates the distance travelled by a particle at constant velocity.
 -- ---
@@ -124,7 +126,7 @@ local bravo: AlphaBravo = "B" -- B for Bravo
 -- ---
 -- Returns:
 -- * [1] (number): The distance travelled by the particle. | m
-function ExemplaryLibrary.DistanceTravelled(speed: number, timeTravelled: number)
+function ExemplaryLibrary.DistanceTravelled(speed: number, timeTravelled: number): (number)
 	return speed * timeTravelled
 end
 
@@ -139,7 +141,7 @@ end
 -- ---
 -- Returns:
 -- * [1] (number): The speed of the particle. | m s^-1
-function ExemplaryLibrary.SpeedCalculation(distanceTravelled: number, timeTravelled: number)
+function ExemplaryLibrary.SpeedCalculation(distanceTravelled: number, timeTravelled: number): (number)
 
 	assert(timeTravelled ~= 0, "Time travelled must not be zero")
 	return distanceTravelled / timeTravelled
@@ -168,7 +170,7 @@ function ExemplaryLibrary.NumericallyIntegrateCrap(
 	domainMax: number,
 	
 	stepSize: number?
-)
+): (number)
 
 	local step = stepSize or 1e-3
 	assert(step ~= 0, "Step size must not be zero")
@@ -192,7 +194,7 @@ end
 
 -- This is where functions designed to do something outside of computing and returning a value go.
 
--- Prints something nice.
+-- Prints an asterisk Christmas tree and something nice.
 -- ---
 -- Inputs:
 -- * height (number): The height of the tree.
@@ -205,7 +207,7 @@ end
 -- Returns:
 -- * [1] (boolean): The success state of the function body.
 -- * [2] (unknown): The error message if the function fails.
-function ExemplaryLibrary.PrintTree(height: number)
+function ExemplaryLibrary.PrintTree(height: number): (boolean, any)
 
 	local success, err = pcall(function()
 

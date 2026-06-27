@@ -1,6 +1,6 @@
-local Library = {}
+local Library = {} -- Don't copy this, it's just to make the static analyser shut up.
 
-Library.Citations = {
+Library._Citations = {
 	[1] = "AS NEEDED"
 }
 
@@ -16,9 +16,9 @@ Library.Citations = {
 function Library:GetCitations(index: number?)
 
 	if index then
-		return Library.Citations[index]
+		return Library._Citations[index]
 	else
-		return Library.Citations
+		return Library._Citations
 	end
 
 end
