@@ -9,7 +9,7 @@
 	State role, add and remove as needed.
 	
 	Created: 2026-06-24
-	Last Modified: 2026-06-27
+	Last Modified: 2026-06-28
 	Keep these up to date or your records will suffer your incompetence.
 	
 	Version: 0.0.1
@@ -21,7 +21,7 @@
 	
 	Description:
 	Describe the class here.
-	Exemplary class showcasing and interactively documenting Irene's programming conventions for class definitions.
+	This example shows how a class can define typed state, public constants, constructors, and instance methods.
 
 	Dependencies:
 	They go here.
@@ -91,18 +91,20 @@ ExemplaryClass.DEFAULT_CHARLIE = DEFAULT_CHARLIE
 -- Constructors
 -- This is where dedicated functions that generate the given class go.
 
--- Generates a new instance of ExemplaryClass.
--- ---
--- Inputs:
--- * alpha (number): The numeric value assigned to the instance's Alpha field.
--- ... [MUST] be finite.
--- * bravo (string): The string value assigned to the instance's Bravo field.
--- ... [MUST] not be empty.
--- * charlie (Chicken): The optional chicken variant assigned to the instance's Charlie field.
--- ... [MAY] be omitted to leave the field unset.
--- ---
--- Returns:
--- * [1] (ExemplaryClassInstance): The initialised instance of ExemplaryClass.
+--[[
+Generates a new instance of ExemplaryClass.
+
+Inputs:
+* alpha (number): The numeric value assigned to the instance's Alpha field.
+... [MUST] be finite.
+* bravo (string): The string value assigned to the instance's Bravo field.
+... [MUST] not be empty.
+* charlie (Chicken): The optional chicken variant assigned to the instance's Charlie field.
+... [MAY] be omitted to leave the field unset.
+
+Returns:
+* [1] (ExemplaryClassInstance): The initialised instance of ExemplaryClass.
+]]
 function ExemplaryClass.new(alpha: number, bravo: string, charlie: Chicken?): (ExemplaryClassInstance)
 
 	local self = {}
@@ -119,15 +121,17 @@ end
 -- Functions
 -- This is where functions that calculate and return a value go.
 
--- Repeats the Bravo string a number of times derived from Alpha and a scaling factor.
--- ---
--- Inputs:
--- * factor (number): The multiplier applied to the number of repetitions.
--- ... [MUST] be an integer.
--- ... [MUST] be greater than or equal to 0.
--- ---
--- Returns:
--- * [1] (string): The repeated Bravo string.
+--[[
+Repeats the Bravo string a number of times derived from Alpha and a scaling factor.
+
+Inputs:
+* factor (number): The multiplier applied to the number of repetitions.
+... [MUST] be an integer.
+... [MUST] be greater than or equal to 0.
+
+Returns:
+* [1] (string): The repeated Bravo string.
+]]
 function ExemplaryClass:Generate(factor: number): (string)
 
 	local count = self.Alpha * factor
@@ -144,17 +148,19 @@ end
 -- Procedures
 -- This is where functions designed to do something outside of computing and returning a value go.
 
--- Prints the string associated with this ExemplaryClass's Charlie field.
--- ---
--- Inputs:
--- * (none)
--- ---
--- Actions:
--- * Prints a short phrase based on the current chicken value.
--- * Falls back to an ellipsis when the value is unknown.
--- ---
--- Returns:
--- * (none)
+--[[
+Prints the string associated with this ExemplaryClass's Charlie field.
+
+Inputs:
+* (none)
+
+Actions:
+* Prints a short phrase based on the current chicken value.
+* Falls back to an ellipsis when the value is unknown.
+
+Returns:
+* (none)
+]]
 function ExemplaryClass:MakeASoundCharlie()
 
 	local chicken = self.Charlie

@@ -25,26 +25,42 @@
 
 ]]
 
+-- Argument documentation can have three tags for guidance.
+-- [MUST] indicates the argument has to follow this rule or something evil will happen.
+-- [SHOULD] indicates the argument ought to follow this rule or the program may not work as intended.
+-- [MAY] indicates the argument can be controlled to produce different results.
+
+
+
 -- Preamble
 -- This is where module imports, citations and declarations go.
+
+local Players = game:GetService("Players")
+
+
 
 -- Types
 -- This is where types go.
 
+
+
 -- Constants
 -- This is where constant values go.
 
-local Controllers = {}
-
-local Services = {}
+local CONTROLLERS = {}
+local SERVICES = {}
 
 
 
 -- Variables
 -- This is where shared mutable state goes.
 
+
+
 -- Functions
 -- This is where functions that calculate and return a value go.
+
+
 
 -- Procedures
 -- This is where functions designed to do something outside of computing and returning a value go.
@@ -53,13 +69,27 @@ local Services = {}
 
 -- Lifecycle
 
-for _, controller in pairs(Controllers) do
+for _, service in pairs(SERVICES) do
+	if service.Init then
+		service:Init()
+	end
+end
+
+for _, service in pairs(SERVICES) do
+	if service.Start then
+		coroutine.wrap(function()
+			service:Start()
+		end)()
+	end
+end
+
+for _, controller in pairs(CONTROLLERS) do
 	if controller.Init then
 		controller:Init()
 	end
 end
 
-for _, controller in pairs(Controllers) do
+for _, controller in pairs(CONTROLLERS) do
 	if controller.Start then
 		coroutine.wrap(function()
 			controller:Start()
@@ -67,20 +97,13 @@ for _, controller in pairs(Controllers) do
 	end
 end
 
+Players.PlayerAdded:Connect(function(player: Player)
+	print(string.format("Player %s joined.", player.Name))
+end)
 
-for _, service in pairs(Services) do
-	if service.Init then
-		service:Init()
-	end
-end
-
-for _, service in pairs(Services) do
-	if service.Start then
-		coroutine.wrap(function()
-			service:Start()
-		end)()
-	end
-end
+Players.PlayerRemoving:Connect(function(player: Player)
+	print(string.format("Player %s left.", player.Name))
+end)
 
 
 

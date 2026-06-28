@@ -9,10 +9,10 @@
 	State role, add and remove as needed.
 	
 	Created: 2026-06-21
-	Last Modified: 2026-06-27
+	Last Modified: 2026-06-28
 	Keep these up to date or your records will suffer your incompetence.
 	
-	Version: 0.0.2
+	Version: 0.0.3
 	Increment the first one when you make a backwards incompatible change to the module.
 	Increment the second one when you add backwards compatible functionality.
 	Increment the third one when you fix bugs.
@@ -21,7 +21,7 @@
 	
 	Description:
 	Describe the library here.
-	Exemplary library showcasing and interactively documenting Irene's programming conventions for utility libraries.
+	This example shows how a utility library can expose constants, helper functions, and procedural utilities.
 	
 	Citations:
 	[1] Use Harvard citations to cite your sources for whatever magic data.
@@ -41,39 +41,14 @@
 
 
 
--- Preamble
-
--- This is where module imports, citations and declarations go.
-
 local ExemplaryLibrary = {} -- Name your library after the file name.
 
-ExemplaryLibrary.Citations = { -- TODO: Maybe I should make a universal citation module?
-	[1] = "Use Harvard citations to cite your sources for whatever magic data."
-}
-
--- Fetches built-in citations.
--- ---
--- Inputs:
--- * index (number) (optional): The index of the citation to print.
--- ... [MUST] be an integer.
--- ... [MUST] be 1 or greater.
--- ---
--- Returns:
--- * [1] (string | {string}): The citation at the given index if index is present, or a table of all citations if index is absent.
-function ExemplaryLibrary:GetCitations(index: number?): (string | {string})
-
-	if index then
-		return ExemplaryLibrary.Citations[index]
-	else
-		return ExemplaryLibrary.Citations
-	end
-
-end
+-- Preamble
+-- This is where module imports, citations and declarations go.
 
 
 
 -- Types
-
 -- This is where types go.
 
 type AlphaBravo = ("A" | "B")
@@ -81,7 +56,6 @@ type AlphaBravo = ("A" | "B")
 
 
 -- Constants
-
 -- This is where constant values go.
 
 -- If you have constants, write down down like so.
@@ -105,7 +79,6 @@ const alpha: AlphaBravo = "A" -- A for Alpha
 
 
 -- Variables
-
 -- This is where shared mutable state goes.
 
 local bravo: AlphaBravo = "B" -- B for Bravo
@@ -113,34 +86,37 @@ local bravo: AlphaBravo = "B" -- B for Bravo
 
 
 -- Functions
-
 -- This is where functions that calculate and return a value go.
 
--- Calculates the distance travelled by a particle at constant velocity.
--- ---
--- Inputs:
--- * speed (number): The speed of the particle. | m s^-1
--- ... [SHOULD] Not be negative.
--- * timeTravelled (number): The time the particle has travelled for. | s
--- ... [SHOULD] Not be negative.
--- ---
--- Returns:
--- * [1] (number): The distance travelled by the particle. | m
+--[[
+Calculates the distance travelled by a particle at constant velocity.
+
+Inputs:
+* speed (number): The speed of the particle. | m s^-1
+... [SHOULD] Not be negative.
+* timeTravelled (number): The time the particle has travelled for. | s
+... [SHOULD] Not be negative.
+
+Returns:
+* [1] (number): The distance travelled by the particle. | m
+]]
 function ExemplaryLibrary.DistanceTravelled(speed: number, timeTravelled: number): (number)
 	return speed * timeTravelled
 end
 
--- Calculates the speed of a particle given the distance travelled and the time taken.
--- ---
--- Inputs:
--- * distanceTravelled (number): The distance travelled by the particle. | m
--- ... [SHOULD] Not be negative.
--- * timeTravelled (number): The time the particle has travelled for. | s
--- ... [MUST] Not be zero.
--- ... [SHOULD] Not be negative.
--- ---
--- Returns:
--- * [1] (number): The speed of the particle. | m s^-1
+--[[
+Calculates the speed of a particle given the distance travelled and the time taken.
+
+Inputs:
+* distanceTravelled (number): The distance travelled by the particle. | m
+... [SHOULD] Not be negative.
+* timeTravelled (number): The time the particle has travelled for. | s
+... [MUST] Not be zero.
+... [SHOULD] Not be negative.
+
+Returns:
+* [1] (number): The speed of the particle. | m s^-1
+]]
 function ExemplaryLibrary.SpeedCalculation(distanceTravelled: number, timeTravelled: number): (number)
 
 	assert(timeTravelled ~= 0, "Time travelled must not be zero")
@@ -150,19 +126,21 @@ end
 
 -- We have the Shift + scroll combo for a reason.
 
--- Numerically integrates a numeric one-argument function over a given domain using a left Riemann sum.
--- ---
--- Inputs:
--- * functionToIntegrate (function): The function to integrate.
--- ... [SHOULD] Take a single number as input and return a single number.
--- * domainMin (number): The minimum value of the domain.
--- * domainMax (number): The maximum value of the domain.
--- * stepSize (number): The precision of the integration. Defaults to 1e-3.
--- ... [MUST] Not be zero.
--- ... [MAY] Be adjusted to control the balance between computational load and accuracy.
--- ---
--- Returns:
--- * [1] (number): The result of the integration.
+--[[
+Numerically integrates a numeric one-argument function over a given domain using a left Riemann sum.
+
+Inputs:
+* functionToIntegrate (function): The function to integrate.
+... [SHOULD] Take a single number as input and return a single number.
+* domainMin (number): The minimum value of the domain.
+* domainMax (number): The maximum value of the domain.
+* stepSize (number): The precision of the integration. Defaults to 1e-3.
+... [MUST] Not be zero.
+... [MAY] Be adjusted to control the balance between computational load and accuracy.
+
+Returns:
+* [1] (number): The result of the integration.
+]]
 function ExemplaryLibrary.NumericallyIntegrateCrap(
 	functionToIntegrate: (number) -> number,
 	
@@ -191,22 +169,23 @@ end
 
 
 -- Procedures
-
 -- This is where functions designed to do something outside of computing and returning a value go.
 
--- Prints an asterisk Christmas tree and something nice.
--- ---
--- Inputs:
--- * height (number): The height of the tree.
--- ... [SHOULD] be greater than 0.
--- ---
--- Actions:
--- * Prints a nice little asterisk tree to the console.
--- * Also prints "your mom".
--- ---
--- Returns:
--- * [1] (boolean): The success state of the function body.
--- * [2] (unknown): The error message if the function fails.
+--[[
+Prints an asterisk Christmas tree and something nice.
+
+Inputs:
+* height (number): The height of the tree.
+... [SHOULD] be greater than 0.
+Actions:
+
+* Prints a nice little asterisk tree to the console.
+* Also prints "your mom".
+
+Returns:
+* [1] (boolean): The success state of the function body.
+* [2] (unknown): The error message if the function fails.
+]]
 function ExemplaryLibrary.PrintTree(height: number): (boolean, any)
 
 	local success, err = pcall(function()

@@ -25,33 +25,54 @@
 
 ]]
 
+-- Argument documentation can have three tags for guidance.
+-- [MUST] indicates the argument has to follow this rule or something evil will happen.
+-- [SHOULD] indicates the argument ought to follow this rule or the program may not work as intended.
+-- [MAY] indicates the argument can be controlled to produce different results.
+
+
+
 local Class = {}
-Class.__index = Class
-
-
 
 -- Preamble
 -- This is where module imports, citations and declarations go.
+
+Class.__index = Class
+
+
 
 -- Types
 -- This is where types go.
 
 type ClassData = {}
 
-export type ClassInstance = setmetatable<ClassData, typeof(Class)>
+export type ClassInstance = typeof(setmetatable({} :: ClassData, Class))
 
 
 
 -- Constants
 -- This is where constant values go.
 
+
+
 -- Variables
 -- This is where shared mutable state goes.
+
+
 
 -- Constructors
 -- This is where initialisation helpers go.
 
-function Class.new()
+--[[
+Creates a new instance of the class.
+
+Inputs:
+* (none)
+
+Returns:
+* [1] (ClassInstance): The new instance.
+]]
+function Class.new(): ClassInstance
 	local self = {}
 	return setmetatable(self, Class)
 end
@@ -61,8 +82,12 @@ end
 -- Functions
 -- This is where functions that calculate and return a value go.
 
+
+
 -- Procedures
 -- This is where functions designed to do something outside of computing and returning a value go.
+
+
 
 -- Termination
 
