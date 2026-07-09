@@ -21,7 +21,7 @@
 	Keep this short and specific to the module's purpose.
 
 	Dependencies:
-	Add any required modules, services, or libraries here.
+	* Add any required modules, services, or libraries here.
 
 ]]
 

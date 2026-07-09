@@ -24,7 +24,7 @@
 	This example shows how a server-side entry-point script can initialise services and controllers together.
 
 	Dependencies:
-	Add any required modules, services, or libraries here.
+	* Add any required modules, services, or libraries here.
 
 	You can also write extra things in this section, like a changelog, acknowledgements or a memorial.
 

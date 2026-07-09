@@ -27,7 +27,7 @@
 	[1] Use Harvard citations to cite your sources for whatever magic data.
 
 	Dependencies:
-	They go here.
+	* Add any required modules, services, or libraries here.
 	
 	You can also write extra things in this section, like a changelog, acknowledgements or a memorial.
 	I used this to pay my respects to the fathers of the field of physics in my previous libraries.

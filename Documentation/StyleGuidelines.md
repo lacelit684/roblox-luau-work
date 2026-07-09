@@ -120,6 +120,24 @@ Example:
 - For client/server modules, make the lifecycle intent obvious.
 - Keep code readable - don't overcomment on already-intuitive logic.
 
+## Module-Specific Conventions
+
+Use the detailed reference in [ModuleTypeGuidelines.md](ModuleTypeGuidelines.md) for implementation-specific guidance. The common rule is simple: match the module's role to its shape.
+
+- Class modules should model a concrete object or concept, expose a constructor, and keep state and behavior together.
+- Service modules should own long-lived shared state, react to events, and expose lifecycle methods such as `Init` and `Start`.
+- Controller modules should coordinate runtime behavior for a feature, UI flow, or gameplay system without becoming a dumping ground for unrelated logic.
+- DataBlock modules should represent data schemas, config tables, or reusable records with minimal side effects.
+- Library modules should contain stateless helpers, conversion utilities, and shared calculations.
+- Handler modules should sit at the boundary of a runtime layer and keep communication concerns explicit.
+- Script entry points should remain thin and delegate work to services, controllers, or handlers.
+
+### Script Entry Point Conventions
+- Use ModuleScript for reusable logic and data.
+- Use Script for server-side entry points and LocalScript for client-side entry points.
+- Keep startup logic short and explicit; call into one or two modules rather than embedding all logic in a single script.
+- Prefer `Init`/`Start` or equivalent lifecycle methods over ad-hoc initialization.
+
 ## Minimalism
 Comments are made to make modules quick to understand, not ornately documented for every trivial line.
 

@@ -24,7 +24,7 @@
 	This example shows how a client-side entry-point script can initialise controllers and maintain per-player state.
 
 	Dependencies:
-	Add any required modules, services, or libraries here.
+	* Add any required modules, services, or libraries here.
 
 	You can also write extra things in this section, like a changelog, acknowledgements or a memorial.
 

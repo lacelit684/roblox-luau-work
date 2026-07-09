@@ -24,7 +24,7 @@
 	This example shows how a static data block can bundle shared values and sample instances together.
 
 	Dependencies:
-	Add any required modules, services, or libraries here. There probably won't be many for static data.
+	* Add any required modules, services, or libraries here. There probably won't be many for static data.
 
 	You can also write extra things in this section, like a changelog, acknowledgements or a memorial.
 

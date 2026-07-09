@@ -24,7 +24,7 @@
 	[1] Add sources or references here if needed.
 
 	Dependencies:
-	Add any required modules, services, or libraries here.
+	* Add any required modules, services, or libraries here.
 
 ]]
 

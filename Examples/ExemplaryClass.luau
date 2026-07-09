@@ -24,7 +24,7 @@
 	This example shows how a class can define typed state, public constants, constructors, and instance methods.
 
 	Dependencies:
-	They go here.
+	* Add any required modules, services, or libraries here.
 	
 	You can also write extra things in this section, like a changelog, acknowledgements or a memorial.
 	

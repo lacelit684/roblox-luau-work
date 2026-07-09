@@ -24,7 +24,7 @@
 	This example shows how a simple service can expose state and lifecycle methods while reacting to player events.
 
 	Dependencies:
-	Add any required modules, services, or libraries here.
+	* Add any required modules, services, or libraries here.
 
 	You can also write extra things in this section, like a changelog, acknowledgements or a memorial.
 

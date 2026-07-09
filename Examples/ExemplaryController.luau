@@ -24,7 +24,7 @@
 	This example shows how a lightweight runtime controller might keep its own state and expose lifecycle methods.
 
 	Dependencies:
-	Add any required modules, services, or libraries here.
+	* Add any required modules, services, or libraries here.
 
 ]]
 
