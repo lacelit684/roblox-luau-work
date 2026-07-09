@@ -82,14 +82,6 @@ for _, controller in pairs(CONTROLLERS) do
 	end
 end
 
-Players.PlayerAdded:Connect(function(player: Player)
-	print(string.format("Player %s joined.", player.Name))
-end)
-
-Players.PlayerRemoving:Connect(function(player: Player)
-	print(string.format("Player %s left.", player.Name))
-end)
-
 
 
 -- Termination
