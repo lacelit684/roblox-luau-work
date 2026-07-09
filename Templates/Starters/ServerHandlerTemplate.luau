@@ -69,13 +69,13 @@ local SERVICES = {}
 
 -- Lifecycle
 
-for _, service in pairs(SERVICES) do
+for _, service in ipairs(SERVICES) do
 	if service.Init then
 		service:Init()
 	end
 end
 
-for _, service in pairs(SERVICES) do
+for _, service in ipairs(SERVICES) do
 	if service.Start then
 		coroutine.wrap(function()
 			service:Start()
@@ -83,13 +83,13 @@ for _, service in pairs(SERVICES) do
 	end
 end
 
-for _, controller in pairs(CONTROLLERS) do
+for _, controller in ipairs(CONTROLLERS) do
 	if controller.Init then
 		controller:Init()
 	end
 end
 
-for _, controller in pairs(CONTROLLERS) do
+for _, controller in ipairs(CONTROLLERS) do
 	if controller.Start then
 		coroutine.wrap(function()
 			controller:Start()

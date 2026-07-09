@@ -68,13 +68,13 @@ local CONTROLLERS = {}
 
 -- Lifecycle
 
-for _, controller in pairs(CONTROLLERS) do
+for _, controller in ipairs(CONTROLLERS) do
 	if controller.Init then
 		controller:Init()
 	end
 end
 
-for _, controller in pairs(CONTROLLERS) do
+for _, controller in ipairs(CONTROLLERS) do
 	if controller.Start then
 		coroutine.wrap(function()
 			controller:Start()
