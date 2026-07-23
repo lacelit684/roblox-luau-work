@@ -1,20 +1,16 @@
 # Metadata
 
 ## Contributors
-
-- <b>Irene "lacelit684"</b> - Lead Writer since 2026-06-28
+- <b>Lucy "lacelit684"</b> - Lead Writer since 2026-06-28
 
 ## Dates
-
 <b>Created:</b> 2026-06-28
-<b>Last Modified:</b> 2026-06-28
+<b>Last Modified:</b> 2026-07-23
 
 ## Legal
-
 <b>Licence:</b> MPL-2.0
 
 ## Description
-
 A detailed guide for choosing and structuring Luau and Roblox module types, handlers, and runtime scripts in this library.
 
 ---

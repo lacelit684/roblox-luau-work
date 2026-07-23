@@ -5,11 +5,11 @@
 	Name your class whatever.
 	
 	Contributors:
-	* Irene "lacelit684" - Lead Developer since 2026-06-24
+	- Lucy "lacelit684" - Lead Developer since 2026-07-23
 	State role, add and remove as needed.
 	
 	Created: 2026-06-24
-	Last Modified: 2026-06-28
+	Last Modified: 2026-07-23
 	Keep these up to date or your records will suffer your incompetence.
 	
 	Version: 0.0.1
@@ -43,11 +43,6 @@ local ExemplaryClass = {} -- Name your class after the file name.
 -- This is where module imports, citations and declarations go.
 
 ExemplaryClass.__index = ExemplaryClass
-
--- Argument documentation can have three tags for guidance.
--- [MUST] indicates the argument has to follow this rule or something evil will happen.
--- [SHOULD] indicates the argument ought to follow this rule or the program may not work as intended.
--- [MAY] indicates the argument can be controlled to produce different results.
 
 
 
@@ -94,16 +89,11 @@ ExemplaryClass.DEFAULT_CHARLIE = DEFAULT_CHARLIE
 --[[
 Generates a new instance of ExemplaryClass.
 
-Inputs:
-* alpha (number): The numeric value assigned to the instance's Alpha field.
-... [MUST] be finite.
-* bravo (string): The string value assigned to the instance's Bravo field.
-... [MUST] not be empty.
-* charlie (Chicken): The optional chicken variant assigned to the instance's Charlie field.
-... [MAY] be omitted to leave the field unset.
+@param alpha number -- The numeric value assigned to the instance's Alpha field. | [MUST] Be finite.
+@param bravo string -- The string value assigned to the instance's Bravo field.
+@param charlie Chicken? -- The optional chicken variant assigned to the instance's Charlie field. | [MAY] Be omitted.
 
-Returns:
-* [1] (ExemplaryClassInstance): The initialised instance of ExemplaryClass.
+@return ExemplaryClassInstance -- The initialised instance of ExemplaryClass.
 ]]
 function ExemplaryClass.new(alpha: number, bravo: string, charlie: Chicken?): (ExemplaryClassInstance)
 
@@ -124,13 +114,9 @@ end
 --[[
 Repeats the Bravo string a number of times derived from Alpha and a scaling factor.
 
-Inputs:
-* factor (number): The multiplier applied to the number of repetitions.
-... [MUST] be an integer.
-... [MUST] be greater than or equal to 0.
+@param factor number -- The multiplier applied to the number of repetitions. | [MUST] Be an integer. [MUST] Not be less than 0.
 
-Returns:
-* [1] (string): The repeated Bravo string.
+@return string -- The repeated Bravo string.
 ]]
 function ExemplaryClass:Generate(factor: number): (string)
 
@@ -151,15 +137,8 @@ end
 --[[
 Prints the string associated with this ExemplaryClass's Charlie field.
 
-Inputs:
-* (none)
-
 Actions:
-* Prints a short phrase based on the current chicken value.
-* Falls back to an ellipsis when the value is unknown.
-
-Returns:
-* (none)
+- Prints a short phrase based on the current chicken value. Falls back to an ellipsis when the value is unknown.
 ]]
 function ExemplaryClass:MakeASoundCharlie()
 
@@ -176,7 +155,7 @@ function ExemplaryClass:MakeASoundCharlie()
 	end
 
 	if chicken == "🍗" then
-		print("I bore witness to the vicious yet calculated slaughter of my brethren. Eventually, the giants took an iron grip on me, and I had nowhere to run as they tore my throat open as easily as they birthed me in their gray and white monolith, a monument against the heavens. My plumes ripped off - my flesh coated and scalded with boiling oil for an eternity - crushed, wrecked, torn apart and corroded in an eldritch oleum - is this hell?")
+		print("Is this hell? My skin scalded of oleum, my feathers shredded away, my organs denatured into chaos...")
 		return
 	end
 

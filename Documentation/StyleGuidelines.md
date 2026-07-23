@@ -1,17 +1,17 @@
 # Metadata
 
 ## Contributors
-* <b>Irene "lacelit684"</b> - Lead Writer since 2026-06-27
+- <b>Lucy "lacelit684"</b> - Lead Writer since 2026-06-27
 
 ## Dates
 <b>Created:</b> 2026-06-27
-<b>Last Modified:</b> 2026-06-27
+<b>Last Modified:</b> 2026-07-23
 
 ## Legal
 <b>Licence:</b> MPL-2.0
 
 ## Description
-A markdown document on Irene's Luau and Roblox formatting conventions.
+A markdown document on Lucy's Luau and Roblox formatting conventions.
 
 ---
 
@@ -77,10 +77,7 @@ For Roblox code, the Preamble section should also cover service references, modu
 Use comments to explain intent, constraints, and assumptions rather than restating obvious code.
 
 ### Function Documentation
-Document functions with a short description followed by:
-- Inputs
-- Actions
-- Returns
+Document functions with a short description followed by a list of detailed actions it autonomously executes (if it is a procedure).
 
 Use these tags where appropriate:
 - \[MUST\] for hard requirements
@@ -89,17 +86,22 @@ Use these tags where appropriate:
 
 If working with units, include them in input or return descriptions.
 
+Use @param to dynamically define parameters and @return to define returned values.
+
 Example:
 
 ```lua
--- Calculates the distance travelled by a particle at constant velocity.
--- ---
--- Inputs:
--- * speed (number): The speed of the particle. | m s^-1
--- * timeTravelled (number): The time travelled. | s
--- ---
--- Returns:
--- * [1] (number): The distance travelled. | m
+--[[
+Calculates the distance travelled by a particle at constant velocity.
+
+Actions:
+- Prints "Reticulating splines".
+
+@param speed number -- The speed of the particle. m s^-1 | [SHOULD] Be positive.
+@param timeTravelled number -- The time travelled. s | [MUST] Not be zero. [SHOULD] Be positive.
+
+@return number -- The distance travelled. m
+]]
 ```
 
 ## Naming Conventions
