@@ -66,8 +66,7 @@ export type ClassInstance = typeof(setmetatable({} :: ClassData, Class))
 --[[
 Creates a new instance of the class.
 
-Inputs:
-* (none)
+@return ClassInstance -- The new instance.
 
 Returns:
 * [1] (ClassInstance): The new instance.

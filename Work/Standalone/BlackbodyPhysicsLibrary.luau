@@ -41,15 +41,11 @@ BlackbodyPhysicsLibrary.Citations = {
 	[1] = "Wyman, C., Sloan, P.-P. and Shirley, P. (2013). Simple Analytic Approximations to the CIE XYZ Color Matching Functions. Journal of Computer Graphics Techniques, [online] 2(2), p.5. Available at: https://jcgt.org/published/0002/02/01/paper.pdf [Accessed 26 Jun. 2025]."
 }
 
--- Fetches built-in citations.
--- ---
--- Inputs:
--- * index (number) (optional): The index of the citation to print.
--- ... [MUST] be an integer.
--- ... [MUST] be 1 or greater.
--- ---
--- Returns:
--- * [1] (string | table): The citation at the given index if index is present, or a table of all citations if index is absent.
+--[[
+Fetches built-in citations.
+@param index number? The index of the citation to print. [MUST] be an integer. [MUST] be 1 or greater.
+@return (string | table) The citation at the given index if `index` is present, or a table of all citations if absent.
+]]
 function BlackbodyPhysicsLibrary.GetCitations(index: number?)
 
 	if index then
@@ -63,6 +59,10 @@ end
 local MathsLibraryPointer: Instance? = script:FindFirstChild("MathsLibraryPointer")
 if not (MathsLibraryPointer and MathsLibraryPointer:IsA("ObjectValue")) then error("Requires MathsLibrary.luau!") end
 local MathsLibrary = require(MathsLibraryPointer.Value)
+
+BlackbodyPhysicsLibrary.GetCitations()
+
+BlackbodyPhysicsLibrary.GetCitations()
 
 
 
@@ -98,11 +98,11 @@ function BlackbodyPhysicsLibrary.SpectralRadiance(wavelength: number, temperatur
 
 	local numerator = 2 * PLANCK_CONSTANT * SPEED_OF_LIGHT^2
 
-	local denominator = (wavelength ^ 5) * (
+	local denominator = ( (wavelength * NM_TO_M) ^ 5) * (
 		math.exp(
 			PLANCK_CONSTANT
 				* SPEED_OF_LIGHT
-				* wavelength ^ -1
+				* (wavelength * NM_TO_M) ^ -1
 				* BOLTZMANN_CONSTANT ^ -1
 				* temperature ^ -1
 		)
@@ -110,94 +110,6 @@ function BlackbodyPhysicsLibrary.SpectralRadiance(wavelength: number, temperatur
 	)
 
 	return MathsLibrary.SafeDivide(numerator, denominator)
-
-end
-
-
--- Calculates the relative large cone stimulus value for a given wavelength of light. [1]
--- ---
--- Inputs:
--- * wavelength (number): The wavelength to calculate for. | nm
--- ... [MUST] Be greater than 0.
--- ---
--- Returns:
--- * [1] (number): The relative large cone stimulus value for the given wavelength of light.
-function BlackbodyPhysicsLibrary.XStimulus(wavelength: number)
-
-	assert(wavelength > 0, "Wavelength must be greater than 0")
-
-	local scale_1 = (wavelength - 442.0) * (if wavelength < 442.0 then 0.0624 else 0.0374)
-	local scale_2 = (wavelength - 599.8) * (if wavelength < 599.8 then 0.0264 else 0.0323)
-	local scale_3 = (wavelength - 501.1) * (if wavelength < 501.1 then 0.0490 else 0.0382)
-
-	return
-		  0.362 * math.exp(-0.5 * scale_1 ^ 2)
-		+ 1.056 * math.exp(-0.5 * scale_2 ^ 2)
-		- 0.065 * math.exp(-0.5 * scale_3 ^ 2)
-
-end
-
--- Calculates the relative medium cone stimulus value for a given wavelength of light. [1]
--- ---
--- Inputs:
--- * wavelength (number): The wavelength to calculate for. | nm
--- ... [MUST] Be greater than 0.
--- ---
--- Returns:
--- * [1] (number): The relative medium cone stimulus value for the given wavelength of light.
-function BlackbodyPhysicsLibrary.YStimulus(wavelength: number)
-
-	assert(wavelength > 0, "Wavelength must be greater than 0")
-
-	local scale_1 = (wavelength - 568.8) * (if wavelength < 568.8 then 0.0213 else 0.0247)
-	local scale_2 = (wavelength - 530.9) * (if wavelength < 530.9 then 0.0613 else 0.0322)
-
-	return
-		  0.821 * math.exp(-0.5 * scale_1 ^ 2)
-		+ 0.286 * math.exp(-0.5 * scale_2 ^ 2)
-
-end
-
--- Calculates the relative small cone stimulus value for a given wavelength of light. [1]
--- ---
--- Inputs:
--- * wavelength (number): The wavelength to calculate for. | nm
--- ... [MUST] Be greater than 0.
--- ---
--- Returns:
--- * [1] (number): The relative small cone stimulus value for the given wavelength of light.
-function BlackbodyPhysicsLibrary.ZStimulus(wavelength: number)
-
-	assert(wavelength > 0, "Wavelength must be greater than 0")
-
-	local scale_1 = (wavelength - 437.0) * (if wavelength < 437.0 then 0.0845 else 0.0278)
-	local scale_2 = (wavelength - 459.0) * (if wavelength < 459.0 then 0.0385 else 0.0725)
-
-	return
-		  1.217 * math.exp(-0.5 * scale_1 ^ 2)
-		+ 0.681 * math.exp(-0.5 * scale_2 ^ 2)
-
-end
-
-
--- Calculates the relative tristimulus values for a given wavelength of light. [1]
--- ---
--- Inputs:
--- * wavelength (number): The wavelength to calculate for. | nm
--- ... [MUST] Be greater than 0.
--- ---
--- Returns:
--- * [1] (number): The relative large cone stimulus value for the given wavelength of light.
--- * [2] (number): The relative medium cone stimulus value for the given wavelength of light.
--- * [3] (number): The relative small cone stimulus value for the given wavelength of light.
-function BlackbodyPhysicsLibrary.Tristimulus(wavelength: number)
-
-	assert(wavelength > 0, "Wavelength must be greater than 0")
-
-	return
-		BlackbodyPhysicsLibrary.XStimulus(wavelength),
-		BlackbodyPhysicsLibrary.YStimulus(wavelength),
-		BlackbodyPhysicsLibrary.ZStimulus(wavelength)
 
 end
 
@@ -240,16 +152,17 @@ function BlackbodyPhysicsLibrary.BlackbodyPower(
 	local step: number = gammaStep or 1
 	local minimum: number = minimumWavelength or BlackbodyPhysicsLibrary.VISIBLE_MIN
 	local maximum: number = maximumWavelength or BlackbodyPhysicsLibrary.VISIBLE_MAX
+
+	local newAngle: number = angle or 1
+	local newArea: number = angle or 1
 	
 	local power = 0
 	
 	for wavelength = minimum, maximum, step do
 
-		local wavelengthMeters = wavelength * NM_TO_M
+		local radiance = BlackbodyPhysicsLibrary.SpectralRadiance(wavelength, temperature)
 
-		local radiance = BlackbodyPhysicsLibrary.SpectralRadiance(wavelengthMeters, temperature)
-
-		power += step * radiance * angle * area
+		power += step * radiance * newAngle * newArea
 
 	end
 	

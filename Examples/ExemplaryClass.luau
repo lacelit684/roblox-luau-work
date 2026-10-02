@@ -5,14 +5,14 @@
 	Name your class whatever.
 	
 	Contributors:
-	- Lucy "lacelit684" - Lead Developer since 2026-07-23
+	- Lucia "lacelit684" - Lead Developer since 2026-07-23
 	State role, add and remove as needed.
 	
 	Created: 2026-06-24
-	Last Modified: 2026-07-23
+	Last Modified: 2026-10-02
 	Keep these up to date or your records will suffer your incompetence.
 	
-	Version: 0.0.1
+	Version: 0.1.0
 	Increment the first one when you make a backwards incompatible change to the module.
 	Increment the second one when you add backwards compatible functionality.
 	Increment the third one when you fix bugs.
@@ -49,7 +49,7 @@ ExemplaryClass.__index = ExemplaryClass
 -- Types
 -- This is where types go.
 
-type Chicken = ("🐥" | "🐤" | "🐣" | "🐔" | "🍗")
+export type Chicken = ("🐥" | "🐤" | "🐣" | "🐔" | "🍗")
 
 type ExemplaryClassData = {
 	Alpha: number,
@@ -155,7 +155,7 @@ function ExemplaryClass:MakeASoundCharlie()
 	end
 
 	if chicken == "🍗" then
-		print("Is this hell? My skin scalded of oleum, my feathers shredded away, my organs denatured into chaos...")
+		print("Is this hell? My skin scalded in oleum, my feathers shredded away, my organs discordant, order is chaos.")
 		return
 	end
 
