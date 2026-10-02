@@ -4,10 +4,10 @@
 	Class Definition
 
 	Contributors:
-	* Irene "lacelit684" - Lead Developer since 2026-06-26
+	* Lucia "lacelit684" - Lead Developer since 2026-06-26
 
 	Created: 2026-06-26
-	Last Modified: 2026-06-28
+	Last Modified: 2026-10-02
 
 	Version: 0.1.0
 
@@ -51,7 +51,8 @@ Generates a new Logger.
 Inputs:
 * initialName (string): Initial name of the logger.
 * initialMinimumLevel (number): Initial minimum level of the logger.
-... [MUST] Be at least 
+... [MUST] Be at least 1.
+... [MUST] Be no more than 5.
 ]]
 function LoggerClass.new(initialName: string, initialMinimumLevel: number?): Logger
 
@@ -107,7 +108,7 @@ end
 
 
 function LoggerClass:SetName(name: string)
-	
+	self.name = name
 end
 
 function LoggerClass:SetMinimumLevel(minimumLevel: number)
